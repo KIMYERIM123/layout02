@@ -7,6 +7,11 @@
     font-weight: inherit;
 }
 
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 ul,
 ol,
 li {
@@ -24,7 +29,7 @@ img {
 }
 
 p {
-    word-break: break-all;
+    word-break: keep-all;
 }
 
 body {
