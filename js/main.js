@@ -24,8 +24,10 @@ $(function () {
         autoplaySpeed: 5000,
         speed: 1000,
         pauseOnHover: false,
-        fade: true,
+        //fade: true,
         arrows: false,
+        //useCSS: false,
+        cssEase: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)',
     });
 
 
@@ -75,8 +77,6 @@ $(function () {
         ]
     });
 
-
-
     $('.main_big_product .arrows .left').on('click', function () {
         $('.product_slide2').slick('slickPrev');
     });
@@ -91,20 +91,15 @@ $(function () {
     });
 
 
-
-
-
     $('.to_top').on('click', function () {
         $('html, body').animate({ scrollTop: 0 }, 600)
     });
+
     $(window).on('scroll', function () {
         let sct = $(window).scrollTop();
+        //sct > 1000 ? $('.to_top').fadeIn(1000) : $('.to_top').fadeOut();
         sct > 1000 ? $('.to_top').addClass('on') : $('.to_top').removeClass('on');
     });
-
-
-
-
 
     $('.scr').on('click', function (e) {
         e.preventDefault();
@@ -113,17 +108,20 @@ $(function () {
         $('html, body').animate({ scrollTop: st }, 600)
     });
 
-
-
+    $('.history_menu li').on('click', function (e) {
+        e.preventDefault();
+        let idx = $(this).index();
+        $('.history_content li').eq(idx).addClass('on').siblings().removeClass('on');
+    });
 
 
     $('#fl').on('change', function () {
         const lnk = $(this).val();
-
-        // console.log(lnk, '바뀌네~~~');
-        // val() 이 있을때만
-        // window.open(lnk);
-        // if (lnk) { window.open(lnk) }
+        //console.log(lnk, ' 바뀌네~~~');
+        //val() 이 있을 떄만...        
+        // if (lnk) {
+        //     window.open(lnk);
+        // }
         lnk && window.open(lnk);
     });
 
@@ -132,15 +130,12 @@ $(function () {
         $(this).next().toggleClass('on');
     });
 
-
-
-
-
     $('.portfolio_slide').on('init afterChange', function (e, s, c) {
         console.log(c);
         $('.main_portfolio .itm').eq(c).addClass('on')
             .siblings().removeClass('on')
-    });
+    })
+
     $('.portfolio_slide').slick({
         centerMode: true,
         //centerPadding: "100px",
@@ -149,17 +144,11 @@ $(function () {
         dots: true,
     });
 
-
-
     $('.main_portfolio .tab_arrows .left').on('click', function () {
         $('.portfolio_slide').slick('slickPrev')
     });
-
     $('.main_portfolio .tab_arrows .right').on('click', function () {
         $('.portfolio_slide').slick('slickNext')
     });
-
-
-
 
 })
